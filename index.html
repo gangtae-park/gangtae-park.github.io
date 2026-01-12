@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graduate Student Portfolio</title>
+    <title>Gangtae Park</title>
     <style>
-        /* Base styles */
+        /* General Styles */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 40px 20px;
             background-color: #fff;
         }
 
@@ -32,37 +32,103 @@
             font-weight: bold;
         }
 
-        /* Sections */
-        section {
-            margin-bottom: 3rem;
-        }
         h1, h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
+            color: #437c17;
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
 
-        /* List styles */
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 0.8rem;
-        }
-        .date {
-            font-weight: bold;
-            color: #666;
-            display: inline-block;
-            width: 120px;
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
         }
 
-        /* Publication specific */
-        .pub-title {
+        /* About Me Section Layout */
+        .about-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .label {
+            color: #437c17;
             font-weight: bold;
             display: block;
+            margin-top: 15px;
         }
-        .pub-authors {
+
+        /* Education & List Styles */
+        .edu-item {
+            margin-bottom: 5px;
+        }
+
+        .edu-item strong {
+            display: inline-block;
+            min-width: 50px;
+        }
+
+        /* Publications Section */
+        .pub-item {
+            margin-bottom: 20px;
+        }
+
+        .pub-title {
+            font-weight: bold;
+        }
+
+        .me {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: white;
+            text-decoration: none;
+            margin-top: 8px;
+            margin-right: 5px;
+        }
+
+        .doi { background-color: #00aaff; }
+        .pdf { background-color: #ff4d4d; }
+
+        /* Academic Services Section */
+        .service-row {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .service-label {
+            width: 200px;
+            color: #437c17;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .service-content {
+            flex: 1;
+        }
+
+        .service-item {
+            margin-bottom: 5px;
+        }
+
+        .date-italic {
             font-style: italic;
+            color: #555;
         }
     </style>
 </head>
@@ -70,70 +136,83 @@
 
     <nav>
         <a href="#about">About Me</a>
-        <a href="#education">Education</a>
         <a href="#publication">Publication</a>
         <a href="#activities">Activities</a>
     </nav>
 
     <section id="about">
-        <h1>About Me</h1>
-        <p>
-            I am a graduate student at [University Name], focusing on [Research Area]. 
-            My research interests include [Topic A], [Topic B], and [Topic C].
-        </p>
-        <p>Email: yourname@email.com</p>
+    <h1>About Me</h1>
+    <div class="about-container">
+        <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+        
+        <div class="about-text">
+            <p>
+                Gangtae Park is a Master student in <strong>WIT Lab</strong> at the School of Electrical Engineering, KAIST, working with <strong>Ian Oakley</strong>. 
+                His research focuses on designing interactive systems using human eye and gaze signal in HMD environment.
+            </p>
+
+            <span class="label">Contact</span>
+            <div>rkdxo0417@kaist.ac.kr</div>
+
+            <span class="label">Education</span>
+            <div class="edu-item"><strong>KAIST</strong>, Master of Science, <i>Daejeon, Republic of Korea</i>, Feb 2025 - Present</div>
+            <div class="edu-item"><strong>KAIST</strong>, Bachelor of Science, <i>Daejeon, Republic of Korea</i>, March 2019 - Feb 2025</div>
+            <div class="edu-item"><strong>Ulsan Science High School</strong>, <i>Ulsan, Republic of Korea</i>, March 2017 - Feb 2019</div>
+        </div>
+    </div>
     </section>
 
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li>
-                <span class="date">2024 - Present</span>
-                <strong>Ph.D. in Computer Science</strong>, University Name
-            </li>
-            <li>
-                <span class="date">2022 - 2024</span>
-                <strong>M.S. in Computer Science</strong>, University Name
-            </li>
-            <li>
-                <span class="date">2018 - 2022</span>
-                <strong>B.S. in Engineering</strong>, University Name
-            </li>
-        </ul>
-    </section>
+    <hr>
 
     <section id="publication">
-        <h2>Publication</h2>
-        <ul>
-            <li>
-                <span class="pub-title">Paper Title: Deep Learning for Something New</span>
-                <span class="pub-authors">Author One, <strong>Author Two (Me)</strong>, Author Three</span><br>
-                <span>Conference Name (CVPR, ICML, etc.), 2025</span>
-            </li>
-            </ul>
+    <h1>Publications</h1>
+    <div class="pub-item">
+        <span class="pub-title">RhythmBlink: Prompting Eye Blinks in Smart Glasses to Prevent Dry Eye Syndrome</span>, 
+        <span class="me">Gangtae Park</span><br>
+        [ACM CHI EA '25]<br>
+        <a href="#" class="badge doi">DOI</a>
+        <a href="#" class="badge pdf">PDF</a>
+    </div>
+    <div class="pub-item">
+        <span class="pub-title">OpenEye: Cross-Device Eye Tracking for Head-Mounted Displays</span>, 
+        <span class="me">Gangtae Park,</span>
+        Mingyu Han, Ian Oakley<br>
+        [ACM ETRA '26]<br>
+        <a href="#" class="badge doi">DOI</a>
+        <a href="#" class="badge pdf">PDF</a>
+    </div>
     </section>
+
+    <hr>
 
     <section id="activities">
-        <h2>Academic Activities</h2>
-        <ul>
-            <li>
-                <span class="date">2025</span>
-                Teaching Assistant for [Course Name]
-            </li>
-            <li>
-                <span class="date">2024</span>
-                Reviewer for [Journal/Conference Name]
-            </li>
-            <li>
-                <span class="date">2023</span>
-                Research Intern at [Company/Lab Name]
-            </li>
-        </ul>
-    </section>
+    <h1>Academic Services</h1>
+    <div class="service-row">
+        <div class="service-label">Activities</div>
+        <div class="service-content">
+            <div class="service-item">ICISTS & GRAFFITI Startup Festival Organization Committee <span class="date-italic">(2019 - 2021)</span></div>
+            <div class="service-item">Dpt. of Electrical Engineering Student Council <span class="date-italic">(2020 - 2021)</span></div>
+            <div class="service-item">Dpt. of Industrial Design Student Council <span class="date-italic">(2024)</span></div>
+            <div class="service-item">Dpt. of Electrical Engineering Graduated Student Council <span class="date-italic">(2025 - Present)</span></div>
+            <div class="service-item">KAIST N1 HCI Lunch Organizor <span class="date-italic">(2025 - Present)</span></div>
+        </div>
+    </div>
 
-    <footer>
-        <p>&copy; 2026 Your Name. Powered by GitHub Pages.</p>
-    </footer>
+    <div class="service-row">
+        <div class="service-label">Student Volunteer</div>
+        <div class="service-content">
+            <div class="service-item">ACM CHI 2025, <i>Tokyo, Japan</i></div>
+        </div>
+    </div>
+
+    <div class="service-row">
+        <div class="service-label">Teaching Assistant</div>
+        <div class="service-content">
+            <div class="service-item">[CS496] Immersion Camp Head Manager (Winter, 2023)</div>
+            <div class="service-item">[EE205] Data Structures and Algorithms for Electrical Engineering (Fall, 2025)</div>
+        </div>
+    </div>
+    </section>
 
 </body>
 </html>
