@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gangtae Park</title>
     <style>
-        /* General Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -14,6 +13,10 @@
             margin: 0 auto;
             padding: 40px 20px;
             background-color: #fff;
+        }
+        
+        a {
+            color: #00aaff;
         }
 
         /* Navigation */
@@ -28,12 +31,12 @@
         nav a {
             margin-right: 1.5rem;
             text-decoration: none;
-            color: #007bff;
+            color: #00aaff;
             font-weight: bold;
         }
 
         h1, h2 {
-            color: #437c17;
+            color: #000000;
             margin-top: 40px;
             margin-bottom: 20px;
         }
@@ -62,7 +65,7 @@
         }
 
         .label {
-            color: #437c17;
+            color: #00aaff;
             font-weight: bold;
             display: block;
             margin-top: 15px;
@@ -93,17 +96,18 @@
 
         .badge {
             display: inline-block;
-            padding: 2px 8px;
+            padding: 3px 12px;
             border-radius: 12px;
             font-size: 12px;
+            font-weight: 600;
             color: white;
             text-decoration: none;
-            margin-top: 8px;
+            margin-top: 2px;
             margin-right: 5px;
         }
 
         .doi { background-color: #00aaff; }
-        .pdf { background-color: #ff4d4d; }
+        .pdf { background-color: #ff4444; }
 
         /* Academic Services Section */
         .service-row {
@@ -113,7 +117,7 @@
 
         .service-label {
             width: 200px;
-            color: #437c17;
+            color: #00aaff;
             font-weight: bold;
             flex-shrink: 0;
         }
@@ -128,7 +132,7 @@
 
         .date-italic {
             font-style: italic;
-            color: #555;
+            color: #555555;
         }
     </style>
 </head>
@@ -141,77 +145,77 @@
     </nav>
 
     <section id="about">
-    <h1>About Me</h1>
-    <div class="about-container">
-        <img src="profile.jpg" alt="Profile Picture" class="profile-img">
-        
-        <div class="about-text">
-            <p>
-                Gangtae Park is a Master student in <strong>WIT Lab</strong> at the School of Electrical Engineering, KAIST, working with <strong>Ian Oakley</strong>. 
-                His research focuses on designing interactive systems using human eye and gaze signal in HMD environment.
-            </p>
+        <h1>About Me</h1>
+        <div class="about-container">
+            <img src="profile.jpeg" alt="Profile Picture" class="profile-img">
+            
+            <div class="about-text">
+                <p>
+                    Gangtae Park is a Master student in <a href="https://wit.kaist.ac.kr/home">WIT Lab</a> at the School of Electrical Engineering, KAIST, working with <a href="https://scholar.google.com/citations?hl=en&user=eth0NcUAAAAJ">Ian Oakley</a>. 
+                    His research focuses on designing interactive systems using human eye and gaze signal in HMD environment.
+                </p>
 
-            <span class="label">Contact</span>
-            <div>rkdxo0417@kaist.ac.kr</div>
+                <span class="label">Contact</span>
+                <div>rkdxo0417@kaist.ac.kr</div>
 
-            <span class="label">Education</span>
-            <div class="edu-item"><strong>KAIST</strong>, Master of Science, <i>Daejeon, Republic of Korea</i>, Feb 2025 - Present</div>
-            <div class="edu-item"><strong>KAIST</strong>, Bachelor of Science, <i>Daejeon, Republic of Korea</i>, March 2019 - Feb 2025</div>
-            <div class="edu-item"><strong>Ulsan Science High School</strong>, <i>Ulsan, Republic of Korea</i>, March 2017 - Feb 2019</div>
+                <span class="label">Education</span>
+                <div class="edu-item"><strong>KAIST</strong>, Master of Science, <i>Daejeon, Republic of Korea</i>, Feb 2025 - Present</div>
+                <div class="edu-item"><strong>KAIST</strong>, Bachelor of Science, <i>Daejeon, Republic of Korea</i>, March 2019 - Feb 2025</div>
+                <div class="edu-item"><strong>Ulsan Science High School</strong>, <i>Ulsan, Republic of Korea</i>, March 2017 - Feb 2019</div>
+            </div>
         </div>
-    </div>
     </section>
 
     <hr>
 
     <section id="publication">
-    <h1>Publications</h1>
-    <div class="pub-item">
-        <span class="pub-title">RhythmBlink: Prompting Eye Blinks in Smart Glasses to Prevent Dry Eye Syndrome</span>, 
-        <span class="me">Gangtae Park</span><br>
-        [ACM CHI EA '25]<br>
-        <a href="#" class="badge doi">DOI</a>
-        <a href="#" class="badge pdf">PDF</a>
-    </div>
-    <div class="pub-item">
-        <span class="pub-title">OpenEye: Cross-Device Eye Tracking for Head-Mounted Displays</span>, 
-        <span class="me">Gangtae Park,</span>
-        Mingyu Han, Ian Oakley<br>
-        [ACM ETRA '26]<br>
-        <a href="#" class="badge doi">DOI</a>
-        <a href="#" class="badge pdf">PDF</a>
-    </div>
+        <h1>Publications</h1>
+        <div class="pub-item">
+            <span class="pub-title">RhythmBlink: Prompting Eye Blinks in Smart Glasses to Prevent Dry Eye Syndrome</span>, 
+            <span class="me">Gangtae Park</span><br>
+            [ACM CHI EA '25]<br>
+            <a href="https://dl.acm.org/doi/10.1145/3706599.3719954" class="badge doi">DOI</a>
+            <a href="https://dl.acm.org/doi/pdf/10.1145/3706599.3719954" class="badge pdf">PDF</a>
+        </div>
+        <div class="pub-item">
+            <span class="pub-title">OpenEye: Cross-Device Eye Tracking for Head-Mounted Displays</span>, 
+            <span class="me">Gangtae Park,</span>
+            Mingyu Han, Ian Oakley<br>
+            [ACM ETRA '26]<br>
+            <a href="#" class="badge doi">DOI</a>
+            <a href="#" class="badge pdf">PDF</a>
+        </div>
     </section>
 
     <hr>
 
     <section id="activities">
-    <h1>Academic Services</h1>
-    <div class="service-row">
-        <div class="service-label">Activities</div>
-        <div class="service-content">
-            <div class="service-item">ICISTS & GRAFFITI Startup Festival Organization Committee <span class="date-italic">(2019 - 2021)</span></div>
-            <div class="service-item">Dpt. of Electrical Engineering Student Council <span class="date-italic">(2020 - 2021)</span></div>
-            <div class="service-item">Dpt. of Industrial Design Student Council <span class="date-italic">(2024)</span></div>
-            <div class="service-item">Dpt. of Electrical Engineering Graduated Student Council <span class="date-italic">(2025 - Present)</span></div>
-            <div class="service-item">KAIST N1 HCI Lunch Organizor <span class="date-italic">(2025 - Present)</span></div>
+        <h1>Academic Activities</h1>
+        <div class="service-row">
+            <div class="service-label">Activities</div>
+            <div class="service-content">
+                <div class="service-item">ICISTS & GRAFFITI Startup Festival Organization Committee <span class="date-italic">(2019 - 2021)</span></div>
+                <div class="service-item">Dpt. of Electrical Engineering Student Council <span class="date-italic">(2020 - 2021)</span></div>
+                <div class="service-item">Dpt. of Industrial Design Student Council <span class="date-italic">(2024)</span></div>
+                <div class="service-item">Dpt. of Electrical Engineering Graduated Student Council <span class="date-italic">(2025 - Present)</span></div>
+                <div class="service-item">KAIST N1 HCI Lunch Organizor <span class="date-italic">(2025 - Present)</span></div>
+            </div>
         </div>
-    </div>
 
-    <div class="service-row">
-        <div class="service-label">Student Volunteer</div>
-        <div class="service-content">
-            <div class="service-item">ACM CHI 2025, <i>Tokyo, Japan</i></div>
+        <div class="service-row">
+            <div class="service-label">Student Volunteer</div>
+            <div class="service-content">
+                <div class="service-item">ACM CHI 2025, <i>Tokyo, Japan</i></div>
+            </div>
         </div>
-    </div>
 
-    <div class="service-row">
-        <div class="service-label">Teaching Assistant</div>
-        <div class="service-content">
-            <div class="service-item">[CS496] Immersion Camp Head Manager (Winter, 2023)</div>
-            <div class="service-item">[EE205] Data Structures and Algorithms for Electrical Engineering (Fall, 2025)</div>
+        <div class="service-row">
+            <div class="service-label">Teaching Assistant</div>
+            <div class="service-content">
+                <div class="service-item">[CS496] Immersion Camp Head Manager (Winter, 2023)</div>
+                <div class="service-item">[EE205] Data Structures and Algorithms for Electrical Engineering (Fall, 2025)</div>
+            </div>
         </div>
-    </div>
     </section>
 
 </body>
