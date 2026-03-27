@@ -4,8 +4,256 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gangtae Park</title>
-        <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #ffffff;
+        }
 
+        a {
+            color: #00aaff;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
+            z-index: 10;
+        }
+
+        nav a {
+            margin-right: 1.5rem;
+            text-decoration: none;
+            color: #00aaff;
+            font-weight: bold;
+        }
+
+        h1, h2 {
+            font-family: 'Poppins', 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #000000;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+
+        .about-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .label {
+            color: #00aaff;
+            font-weight: bold;
+            font-size: 12pt;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .edu-item {
+            margin-bottom: 5px;
+        }
+
+        .edu-item strong {
+            display: inline-block;
+            /* min-width: 10px; */
+        }
+
+        .recent-news {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .news-list {
+            list-style: none;
+            padding: 0;
+            margin: 5px 0;
+        }
+
+        .news-item {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 3px;
+            border-bottom: 1px solid #eee;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .news-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .news-item.extra {
+            display: none;
+        }
+
+        .news-date {
+            font-weight: bold;
+            font-size: small;
+            color: #00aaff;
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .news-content {
+            text-align: left;
+            font-size: small;
+            flex: 1;
+            max-width: 600px;
+        }
+
+        #toggle-news-btn {
+            background: none;
+            border: 1px solid #00aaff;
+            color: #00aaff;
+            padding: 8px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.2s;
+        }
+
+        #toggle-news-btn:hover {
+            background: #00aaff;
+            color: #fff;
+        }
+
+        .pub-card {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.5s ease;
+            display: block;
+            color: inherit;
+        }
+
+        .pub-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 176, 255, 0.5);
+            border-color: #00aaff;
+        }
+
+        .pub-title {
+            font-weight: bold;
+        }
+
+        .me {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            margin-top: 5px;
+            margin-right: 5px;
+            transition: transform 0.2s ease;
+        }
+
+        .badge:hover {
+            transform: translateY(4px);
+        }
+
+        .doi { background-color: #00aaff; }
+        .pdf { background-color: #ff4444; }
+
+        .service-row {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .service-label {
+            width: 200px;
+            color: #00aaff;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .service-content {
+            flex: 1;
+        }
+
+        .service-item {
+            margin-bottom: 5px;
+        }
+
+        .date-italic {
+            font-style: italic;
+            color: #6b6b6b;
+        }
+
+        .loading-text,
+        .empty-text,
+        .error-text {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            margin: 12px 0;
+        }
+
+        .error-text {
+            color: #cc3333;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 24px 16px;
+            }
+
+            .about-container,
+            .service-row,
+            .news-item {
+                flex-direction: column;
+            }
+
+            .profile-img {
+                width: 160px;
+            }
+
+            .news-date {
+                text-align: left;
+                min-width: auto;
+            }
+
+            .service-label {
+                width: auto;
+                margin-bottom: 8px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -19,10 +267,10 @@
         <h1>About Me</h1>
         <div class="about-container">
             <img src="profile.jpeg" alt="Profile Picture" class="profile-img">
-            
+
             <div class="about-text">
                 <p>
-                    Gangtae Park is a Master student in <a href="https://wit.kaist.ac.kr/home">WIT Lab</a> at the School of Electrical Engineering, KAIST, working with <a href="https://scholar.google.com/citations?hl=en&user=eth0NcUAAAAJ">Ian Oakley</a>. 
+                    Gangtae Park is a Master student in <a href="https://wit.kaist.ac.kr/home">WIT Lab</a> at the School of Electrical Engineering, KAIST, working with <a href="https://scholar.google.com/citations?hl=en&user=eth0NcUAAAAJ">Ian Oakley</a>.
                     His research focuses on designing interactive systems using human eye and gaze signal in HMD environment.
                 </p>
 
@@ -30,10 +278,18 @@
                 <div>rkdxo0417@kaist.ac.kr</div>
 
                 <span class="label">Education</span>
-                <div class="edu-item"><strong>KAIST</strong>, Master of Science, <i>Daejeon, Republic of Korea</i>, Feb 2025 - Present</div>
-                <div class="edu-item"><strong>KAIST</strong>, Bachelor of Science, <i>Daejeon, Republic of Korea</i>, March 2019 - Feb 2025</div>
+                <div class="edu-item"><strong>KAIST</strong>, M.S. in Electrical Engineering, <i>Daejeon, Republic of Korea</i>, Feb 2025 - Present</div>
+                <div class="edu-item"><strong>KAIST</strong>, B.S. in Electircal Engineering, <i>Daejeon, Republic of Korea</i>, March 2019 - Feb 2025</div>
                 <div class="edu-item"><strong>Ulsan Science High School</strong>, <i>Ulsan, Republic of Korea</i>, March 2017 - Feb 2019</div>
             </div>
+        </div>
+
+        <div class="recent-news">
+            <h3>Recent News</h3>
+            <div class="news-list" id="news-list">
+                <div class="loading-text">Loading recent news...</div>
+            </div>
+            <button id="toggle-news-btn" style="display: none;">Show More</button>
         </div>
     </section>
 
@@ -41,20 +297,8 @@
 
     <section id="publication">
         <h1>Publications</h1>
-        <div class="pub-item">
-            <span class="pub-title">RhythmBlink: Prompting Eye Blinks in Smart Glasses to Prevent Dry Eye Syndrome</span>, 
-            <span class="me">Gangtae Park</span><br>
-            [ACM CHI EA '25]<br>
-            <a href="https://dl.acm.org/doi/10.1145/3706599.3719954" class="badge doi">DOI</a>
-            <a href="https://dl.acm.org/doi/pdf/10.1145/3706599.3719954" class="badge pdf">PDF</a>
-        </div>
-        <div class="pub-item">
-            <span class="pub-title">OpenEye: Cross-Device Eye Tracking for Head-Mounted Displays</span>, 
-            <span class="me">Gangtae Park,</span>
-            Mingyu Han, Ian Oakley<br>
-            [ACM ETRA '26]<br>
-            <a href="#" class="badge doi">DOI</a>
-            <a href="#" class="badge pdf">PDF</a>
+        <div id="publication-list">
+            <div class="loading-text">Loading publications...</div>
         </div>
     </section>
 
@@ -62,32 +306,160 @@
 
     <section id="activities">
         <h1>Academic Activities</h1>
-        <div class="service-row">
-            <div class="service-label">Activities</div>
-            <div class="service-content">
-                <div class="service-item">ICISTS & GRAFFITI Startup Festival Organization Committee <span class="date-italic">(2019 - 2021)</span></div>
-                <div class="service-item">Dpt. of Electrical Engineering Student Council <span class="date-italic">(2020 - 2021)</span></div>
-                <div class="service-item">Dpt. of Industrial Design Student Council <span class="date-italic">(2024)</span></div>
-                <div class="service-item">Dpt. of Electrical Engineering Graduated Student Council <span class="date-italic">(2025 - Present)</span></div>
-                <div class="service-item">KAIST N1 HCI Lunch Organizor <span class="date-italic">(2025 - Present)</span></div>
-            </div>
-        </div>
-
-        <div class="service-row">
-            <div class="service-label">Student Volunteer</div>
-            <div class="service-content">
-                <div class="service-item">ACM CHI 2025, <i>Tokyo, Japan</i></div>
-            </div>
-        </div>
-
-        <div class="service-row">
-            <div class="service-label">Teaching Assistant</div>
-            <div class="service-content">
-                <div class="service-item">[CS496] Immersion Camp Head Manager (Winter, 2023)</div>
-                <div class="service-item">[EE205] Data Structures and Algorithms for Electrical Engineering (Fall, 2025)</div>
-            </div>
+        <div id="activities-list">
+            <div class="loading-text">Loading activities...</div>
         </div>
     </section>
 
+    <script>
+        const SHEET_ID = '1Jzi-jROzMvXPyC07bZDwyEQlm0BnQgHIgXt3usvGNxs';
+        const SHEET_BASE_URL = `https://opensheet.elk.sh/${SHEET_ID}`;
+        const INITIAL_NEWS_COUNT = 3;
+
+        async function fetchSheet(sheetName) {
+            const response = await fetch(`${SHEET_BASE_URL}/${encodeURIComponent(sheetName)}`);
+            if (!response.ok) {
+                throw new Error(`Failed to load ${sheetName}`);
+            }
+            return response.json();
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function renderNews(items) {
+            const container = document.getElementById('news-list');
+            const button = document.getElementById('toggle-news-btn');
+
+            if (!items.length) {
+                container.innerHTML = '<div class="empty-text">No recent news yet.</div>';
+                button.style.display = 'none';
+                return;
+            }
+
+            const normalizedItems = items
+                .filter(item => item.date || item.content)
+                .reverse();
+
+            container.innerHTML = normalizedItems.map((item, index) => `
+                <div class="news-item${index >= INITIAL_NEWS_COUNT ? ' extra' : ''}">
+                    <span class="news-date">${escapeHtml(item.date)}</span>
+                    <span class="news-content">${escapeHtml(item.content)}</span>
+                </div>
+            `).join('');
+
+            if (normalizedItems.length <= INITIAL_NEWS_COUNT) {
+                button.style.display = 'none';
+                return;
+            }
+
+            button.style.display = 'inline-block';
+            button.innerText = 'Show More';
+
+            button.onclick = function () {
+                const hiddenItems = document.querySelectorAll('.news-item.extra');
+                const isExpanded = button.innerText === 'Show Less';
+
+                hiddenItems.forEach(item => {
+                    item.style.display = isExpanded ? 'none' : 'flex';
+                });
+
+                button.innerText = isExpanded ? 'Show More' : 'Show Less';
+            };
+        }
+
+        function renderPublications(items) {
+            const container = document.getElementById('publication-list');
+
+            if (!items.length) {
+                container.innerHTML = '<div class="empty-text">No publications yet.</div>';
+                return;
+            }
+
+            const normalizedItems = items.filter(item => item.title);
+
+            container.innerHTML = normalizedItems.map(item => {
+                const authors = escapeHtml(item.authors)
+                    .replace(/Gangtae Park/g, '<span class="me"><i>Gangtae Park</i></span>');
+                const venue = escapeHtml(item.venue);
+                const title = escapeHtml(item.title);
+                const doi = item.doi ? `<a href="${escapeHtml(item.doi)}" class="badge doi" target="_blank" rel="noopener noreferrer">DOI</a>` : '';
+                const pdf = item.pdf ? `<a href="${escapeHtml(item.pdf)}" class="badge pdf" target="_blank" rel="noopener noreferrer">PDF</a>` : '';
+
+                return `
+                    <div class="pub-card">
+                        <span class="pub-title">${title}</span><br>
+                        ${authors}<br>
+                        ${venue}<br>
+                        ${doi}
+                        ${pdf}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderActivities(items) {
+            const container = document.getElementById('activities-list');
+
+            if (!items.length) {
+                container.innerHTML = '<div class="empty-text">No activities yet.</div>';
+                return;
+            }
+
+            const grouped = items.reduce((acc, item) => {
+                const category = item.category || 'Other';
+                if (!acc[category]) {
+                    acc[category] = [];
+                }
+                acc[category].push(item);
+                return acc;
+            }, {});
+
+            container.innerHTML = Object.entries(grouped).map(([category, groupItems]) => `
+                <div class="service-row">
+                    <div class="service-label">${escapeHtml(category)}</div>
+                    <div class="service-content">
+                        ${groupItems.map(item => {
+                            const content = escapeHtml(item.content);
+                            const date = item.date ? ` <span class="date-italic">(${escapeHtml(item.date)})</span>` : '';
+                            return `<div class="service-item">${content}${date}</div>`;
+                        }).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderError(containerId, message) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `<div class="error-text">${escapeHtml(message)}</div>`;
+        }
+
+        async function loadHomepageData() {
+            try {
+                const [news, publications, activities] = await Promise.all([
+                    fetchSheet('news'),
+                    fetchSheet('publications'),
+                    fetchSheet('activities')
+                ]);
+
+                renderNews(news);
+                renderPublications(publications);
+                renderActivities(activities);
+            } catch (error) {
+                renderError('news-list', 'Failed to load recent news. Please check your Google Sheet connection.');
+                renderError('publication-list', 'Failed to load publications. Please check your Google Sheet connection.');
+                renderError('activities-list', 'Failed to load activities. Please check your Google Sheet connection.');
+                console.error(error);
+            }
+        }
+
+        loadHomepageData();
+    </script>
 </body>
 </html>
