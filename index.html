@@ -6,6 +6,10 @@
     <title>Gangtae Park</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             line-height: 1.6;
@@ -14,6 +18,10 @@
             margin: 0 auto;
             padding: 40px 20px;
             background-color: #ffffff;
+        }
+
+        section {
+            scroll-margin-top: 70px;
         }
 
         a {
@@ -151,7 +159,7 @@
             padding: 24px;
             margin-bottom: 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.5s ease;
+            transition: transform 0.2s ease, box-shadow 0.5s ease, border-color 0.3s ease;
             display: block;
             color: inherit;
         }
@@ -160,6 +168,99 @@
             transform: translateY(-4px);
             box-shadow: 0 8px 16px rgba(0, 176, 255, 0.5);
             border-color: #00aaff;
+        }
+
+        .pub-card.expandable {
+            cursor: pointer;
+        }
+
+        .pub-card.expandable:focus-visible {
+            outline: 2px solid #00aaff;
+            outline-offset: 2px;
+        }
+
+        .pub-card.expanded {
+            border-color: #00aaff;
+        }
+
+        .pub-header {
+            position: relative;
+            padding-right: 32px;
+        }
+
+        .pub-card:not(.expandable) .pub-header {
+            padding-right: 0;
+        }
+
+        .pub-chevron {
+            position: absolute;
+            top: 4px;
+            right: 0;
+            width: 22px;
+            height: 22px;
+            color: #00aaff;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .pub-card.expanded .pub-chevron {
+            transform: rotate(180deg);
+        }
+
+        .pub-details {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pub-details-inner {
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .pub-details-content {
+            padding-top: 18px;
+            margin-top: 18px;
+            border-top: 1px solid #eee;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .pub-card.expanded .pub-details {
+            grid-template-rows: 1fr;
+        }
+
+        .pub-card.expanded .pub-details-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+        }
+
+        .pub-summary {
+            margin: 0 0 12px 0;
+            font-size: 15px;
+            color: #444;
+        }
+
+        .pub-summary:last-child {
+            margin-bottom: 0;
+        }
+
+        .pub-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .pub-images img {
+            flex: 1 1 260px;
+            max-width: 100%;
+            min-width: 0;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            object-fit: cover;
         }
 
         .pub-title {
@@ -189,6 +290,7 @@
 
         .doi { background-color: #00aaff; }
         .pdf { background-color: #ff4444; }
+        .github { background-color: #8250df; }
 
         .service-row {
             display: flex;
@@ -233,14 +335,43 @@
                 padding: 24px 16px;
             }
 
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            nav {
+                padding: 0.75rem 0;
+            }
+
+            nav a {
+                margin-right: 1rem;
+                font-size: 15px;
+            }
+
+            section {
+                scroll-margin-top: 56px;
+            }
+
             .about-container,
             .service-row,
             .news-item {
                 flex-direction: column;
             }
 
+            .about-container {
+                align-items: center;
+            }
+
+            .about-text {
+                width: 100%;
+            }
+
             .profile-img {
                 width: 160px;
+            }
+
+            .news-item {
+                gap: 2px;
             }
 
             .news-date {
@@ -251,6 +382,30 @@
             .service-label {
                 width: auto;
                 margin-bottom: 8px;
+            }
+
+            .pub-card {
+                padding: 18px;
+                border-radius: 18px;
+            }
+
+            .pub-card:hover {
+                transform: none;
+            }
+
+            .pub-images img {
+                flex-basis: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            nav a {
+                margin-right: 0.75rem;
+                font-size: 14px;
             }
         }
     </style>
@@ -374,6 +529,14 @@
             };
         }
 
+        function normalizeImageUrl(url) {
+            const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+            if (driveMatch) {
+                return `https://drive.google.com/thumbnail?id=${driveMatch[1]}&sz=w1200`;
+            }
+            return url;
+        }
+
         function renderPublications(items) {
             const container = document.getElementById('publication-list');
 
@@ -391,18 +554,70 @@
                 const title = escapeHtml(item.title);
                 const doi = item.doi ? `<a href="${escapeHtml(item.doi)}" class="badge doi" target="_blank" rel="noopener noreferrer">DOI</a>` : '';
                 const pdf = item.pdf ? `<a href="${escapeHtml(item.pdf)}" class="badge pdf" target="_blank" rel="noopener noreferrer">PDF</a>` : '';
+                const github = item.github ? `<a href="${escapeHtml(item.github)}" class="badge github" target="_blank" rel="noopener noreferrer">GitHub</a>` : '';
+
+                const summary = (item.summary || '').trim();
+                const images = (item.image || item.images || '')
+                    .split(',')
+                    .map(url => url.trim())
+                    .filter(Boolean)
+                    .map(normalizeImageUrl);
+                const hasDetails = summary || images.length;
+
+                const chevron = hasDetails ? `
+                    <svg class="pub-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>` : '';
+
+                const details = hasDetails ? `
+                    <div class="pub-details">
+                        <div class="pub-details-inner">
+                            <div class="pub-details-content">
+                                ${summary ? `<p class="pub-summary">${escapeHtml(summary)}</p>` : ''}
+                                ${images.length ? `
+                                    <div class="pub-images">
+                                        ${images.map(url => `<img src="${escapeHtml(url)}" alt="Figure for ${title}" loading="lazy">`).join('')}
+                                    </div>` : ''}
+                            </div>
+                        </div>
+                    </div>` : '';
 
                 return `
-                    <div class="pub-card">
-                        <span class="pub-title">${title}</span><br>
-                        ${authors}<br>
-                        ${venue}<br>
-                        ${doi}
-                        ${pdf}
+                    <div class="pub-card${hasDetails ? ' expandable' : ''}"${hasDetails ? ' tabindex="0" role="button" aria-expanded="false"' : ''}>
+                        <div class="pub-header">
+                            ${chevron}
+                            <span class="pub-title">${title}</span><br>
+                            ${authors}<br>
+                            ${venue}<br>
+                            ${doi}
+                            ${pdf}
+                            ${github}
+                        </div>
+                        ${details}
                     </div>
                 `;
             }).join('');
         }
+
+        function togglePubCard(card) {
+            const expanded = card.classList.toggle('expanded');
+            card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+
+        document.getElementById('publication-list').addEventListener('click', (event) => {
+            if (event.target.closest('a')) return;
+            const card = event.target.closest('.pub-card.expandable');
+            if (card) togglePubCard(card);
+        });
+
+        document.getElementById('publication-list').addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            const card = event.target.closest('.pub-card.expandable');
+            if (card && event.target === card) {
+                event.preventDefault();
+                togglePubCard(card);
+            }
+        });
 
         function renderActivities(items) {
             const container = document.getElementById('activities-list');
